@@ -1,7 +1,16 @@
 let contenedorUnico = document.getElementById("tarjeteroUnico")
 
-function printCartaUnica(array, contenedorUnico) {
-    array.forEach((e) => {
+let fullEvents = events
+
+let idEvent = location.search.slice(8)
+
+let fullEventsFilter = fullEvents.filter(idEvents => idEvent == idEvents._id)
+
+fullEventsFilter = fullEventsFilter[0]
+
+printCartaUnica(fullEventsFilter)
+
+function printCartaUnica(e) {
         contenedorUnico.innerHTML = 
         `
         <div>
@@ -17,19 +26,4 @@ function printCartaUnica(array, contenedorUnico) {
             <p>u$d ${e.price}</p>
         </div>
         `
-    })
-}
-// printCartaUnica(events, contenedorUnico);
-
-function printCartaUnicaDos(array){
-    console.log(location)
-    console.log(location.search)
-    console.log(location.search.slice(4))
-// saca los primeros y ultimos caracteres
-    let printCartaUnicaTres = []
-    let cartasSearch = Number(location.search.slice(4))
-    console.log(typeof(cartasSearch))
-    printCartaUnicaTres = array.filter((e) => e._id === cartasSearch)
-    printCartaUnica(events, contenedorUnico) 
-}
-printCartaUnicaDos(events)
+    }
