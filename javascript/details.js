@@ -24,15 +24,12 @@ function printCartaUnica(array, contenedorUnico) {
 function printCartaUnicaDos(array){
     console.log(location)
     console.log(location.search)
-    console.log(location.search.slice(8))
-    let cartasSearch = Number(location.search.slice(8))
+    console.log(location.search.slice(4))
+// saca los primeros y ultimos caracteres
+    let printCartaUnicaTres = []
+    let cartasSearch = Number(location.search.slice(4))
     console.log(typeof(cartasSearch))
-    array.forEach((e) =>{
-    //carga la varible dentro de un forEach
-    let cartaUnica = e._id
-    if(cartaUnica === cartasSearch){
-        printCartaUnica(events, contenedorUnico)
-    }
-    })}
+    printCartaUnicaTres = array.filter((e) => e._id === cartasSearch)
+    printCartaUnica(events, contenedorUnico) 
+}
 printCartaUnicaDos(events)
-
