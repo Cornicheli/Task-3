@@ -16,6 +16,10 @@
     border-top: solid 2px black;
     background-color: #6c757d;
 }
+.container-fluid{
+    display: flex;
+    
+}
 h1{
     color: rgb(0, 0, 0);
     text-shadow: 2px 2px 10px white;
@@ -113,12 +117,36 @@ p{
     background-color: #495057;
     border-radius: 1rem;
 }
-button{
+.ancor{
     border: solid 2px black;
+    color: black;
     font-weight: 900;
     width: 6rem;
     border-radius: .5rem;
     background-color: #adb5bd;
+}
+.ancor:hover{
+    font-weight: 100;
+    color: white;
+}
+form{
+    display: flex;
+    justify-content: center;
+}
+.form-check{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    min-width: 8%;
+    height: 3.5rem;
+    border-radius: .5rem;
+    border: solid 2px black;;
+}
+#buscadores{
+    border-radius: .5rem;
+    width: 12rem;
+    margin: 1rem;
+    border: solid 2px black;
 }
 .img-card{
     border-radius: 2rem;
@@ -129,7 +157,11 @@ button{
     background-position: center;
     border: solid 2px black;
 }
-
+.filtros{
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+}
 footer{
     display: flex;
     gap: 1.5rem;
@@ -156,6 +188,9 @@ footer{
     .navegador{
         flex-wrap: wrap;
     }
+    h1{
+        font-size: 2rem;
+    }
     .logo{
         height: 50%;
         width: 20%;
@@ -167,6 +202,9 @@ footer{
         justify-content: center;
         flex-wrap: wrap;
         width: 100%;
+    }
+    footer{
+        flex-direction: column;
     }
 }
 

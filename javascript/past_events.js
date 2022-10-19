@@ -13,7 +13,7 @@ let past = events.filter((event) => event.date < currentDate);
             <p>${e.description}</p>
             <div class="texto">
                 <p>$ ${e.price}</p>
-                <button>Read More</button>
+            <a class='ancor' href="../html/details.html?events=${e._id}">Read More</a>
             </div>
         </section>
         `

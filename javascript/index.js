@@ -1,9 +1,8 @@
-// e, es el parametro que va a contener el recorrido del array y debo llamarlo en la function, no el events completo de array. function se da nombre y se llama
+// e, es el parametro que va a contener el recorrido del array. la function se nombra y se llama
 
-//en cada parametro function, lo indicamos con lo que va a recorrer
 // += sume pero mantiendo lo que tiene
 
-let contenedor = document.getElementById("tarjetero");
+let contenedor = document.getElementById("tarjetero")
 
 function printCards(array, contenedor) {
   array.forEach((e) => {
@@ -15,7 +14,7 @@ function printCards(array, contenedor) {
         <p>${e.description}</p>
         <div class='texto'>
             <p>$ ${e.price}</p>
-            <button>Read More</button>
+            <a class='ancor' href="./html/details.html?events=${e._id}">Read More</a>
         </div>
     </section>
     `
@@ -27,7 +26,6 @@ printCards(events, contenedor);
 
 // <-------------- checkbox -------------->
 
-//Array.from() método estático, crea una nueva Array de copia superficial a partir de un objeto iterable o similar a una matriz.
 
 let categorias = document.getElementById('boxes');
 
@@ -45,13 +43,20 @@ checkbox.forEach((nombreCategoria) => {
     `
 })
 
+// <-------------- checkbox logistica -------------->
 let listCheck = []
+
+// evento que activa/desactiva los elementos en este caso los checkbox
 
 categorias.addEventListener(`change`, e=>{
   console.log(buscador.value)
 
+// cuando el evento se checkbox active ejecutara sus intruncciones
+
   if(e.target.checked){
     listCheck = listCheck.concat(events.filter(evento=> evento.category.toLowerCase().includes(e.target.id.toLowerCase() ) ) )
+
+// filter agarra el parametro evento
 
     console.log(listCheck)
 
