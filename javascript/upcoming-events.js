@@ -36,6 +36,7 @@ let categorias = document.getElementById('boxes');
 let checkbox = new Set(events.map((evento) => evento.category) );
 
 checkbox = [...checkbox]
+
 checkbox.forEach((nombreCategoria) => {
   categorias.innerHTML += 
       `
