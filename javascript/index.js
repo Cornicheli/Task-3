@@ -85,11 +85,10 @@ buscador.addEventListener('keyup', e =>{
   let inputUser = e.target.value
 //filter cambiarlo por el function
   
-  let filtro = events.filter(objetoEvento => objetoEvento.name.toLowerCase().includes(inputUser.toLowerCase() ) )
+  let filtro = listCheck.filter(objetoEvento => objetoEvento.name.toLowerCase().includes(inputUser.toLowerCase() ) )
 
     contenedor.innerHTML = ''
 
     printCards(filtro, contenedor)
   }
 )
-

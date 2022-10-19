@@ -23,7 +23,6 @@ let past = events.filter((event) => event.date < currentDate);
 printCards(past, contenedor)
 
 
-
 // <---------------------------- checkbox ---------------------------->
 
 //Array.from() método estático, crea una nueva Array de copia superficial a partir de un objeto iterable o similar a una matriz.
