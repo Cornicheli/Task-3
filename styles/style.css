@@ -129,10 +129,7 @@ p{
     font-weight: 100;
     color: white;
 }
-form{
-    display: flex;
-    justify-content: center;
-}
+
 .form-check{
     display: flex;
     flex-wrap: wrap;

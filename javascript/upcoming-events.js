@@ -26,8 +26,8 @@ let upcoming = events.filter((event) => event.date > currentDate);
 printCards(upcoming, contenedor);
 
 
-
 // <---------------------------- checkbox ---------------------------->
+
 
 //Array.from() método estático, crea una nueva Array de copia superficial a partir de un objeto iterable o similar a una matriz.
 
@@ -73,9 +73,9 @@ let listCheckUno = []
       }
     )
 
-
     // <---------------------------- input busqueda ---------------------------->
-let buscador = document.getElementById('buscadores');
+
+  let buscador = document.getElementById('buscadores');
 
       buscador.addEventListener('keyup', e =>{
         
