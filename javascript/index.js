@@ -26,6 +26,7 @@ printCards(events, contenedor);
 
 // <-------------- checkbox -------------->
 
+// guardamos conetinido html para apliclar las cartas con dom
 
 let categorias = document.getElementById('boxes');
 
@@ -40,24 +41,22 @@ checkbox.forEach((nombreCategoria) => {
         <input class='form-check-input' id='${nombreCategoria}' type='checkbox' role='switch' id='flexSwitchCheckDefault'>
         <label class='form-check-label' for='flexSwitchCheckDefault'>${nombreCategoria}</label>
     </div>
-    `
+  `
 })
 
 // <-------------- checkbox logistica -------------->
-let listCheck = []
+let listCheck = [] //coincidencia
 
 // evento que activa/desactiva los elementos en este caso los checkbox
 
 categorias.addEventListener(`change`, e=>{
-  console.log(buscador.value)
 
 // cuando el evento se checkbox active ejecutara sus intruncciones
 
-  if(e.target.checked){
+  if(e.target.checked){ //indica que cuando el evento este (tildado) ejecuta la instruccion dentro de las llaves.
     listCheck = listCheck.concat(events.filter(evento=> evento.category.toLowerCase().includes(e.target.id.toLowerCase() ) ) )
-
-// filter agarra el parametro evento
-
+// id nombrecategoria
+// filter itera
     console.log(listCheck)
 
     contenedor.innerHTML = ''
@@ -79,14 +78,15 @@ categorias.addEventListener(`change`, e=>{
 
 
 // <-------------- input busqueda -------------->
+
 let buscador = document.getElementById('buscadores');
 
 buscador.addEventListener('keyup', e =>{
-  let inputUser = e.target.value
-//filter cambiarlo por el function
+
+  let inputUser = e.target.value//filter cambiarlo por el function
   
   let filtro = listCheck.filter(objetoEvento => objetoEvento.name.toLowerCase().includes(inputUser.toLowerCase() ) )
-
+  // incluye = includes
     contenedor.innerHTML = ''
 
     printCards(filtro, contenedor)

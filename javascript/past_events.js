@@ -25,8 +25,6 @@ printCards(past, contenedor)
 
 // <---------------------------- checkbox ---------------------------->
 
-//Array.from() método estático, crea una nueva Array de copia superficial a partir de un objeto iterable o similar a una matriz.
-
 let categorias = document.getElementById("boxes");
 
 let checkbox = new Set(events.map((evento) => evento.category) )
