@@ -77,18 +77,19 @@ categorias.addEventListener(`change`, e=>{
   )
 
 
-// <-------------- input busqueda -------------->
+    // <---------------------------- input busqueda ---------------------------->
+    let buscador = document.getElementById('buscadores');
 
-let buscador = document.getElementById('buscadores');
+    buscador.addEventListener('keyup', e =>{
 
-buscador.addEventListener('keyup', e =>{
+    let inputUser = e.target.value
 
-  let inputUser = e.target.value//filter cambiarlo por el function
-  
-  let filtro = listCheck.filter(objetoEvento => objetoEvento.name.toLowerCase().includes(inputUser.toLowerCase() ) )
-  // incluye = includes
-    contenedor.innerHTML = ''
+    console.log(buscador.value) //filter cambiarlo por el function
 
-    printCards(filtro, contenedor)
-  }
-)
+    let filtro = events.filter(objetoEvento => objetoEvento.name.toLowerCase().includes(inputUser.toLowerCase() ) )
+
+            contenedor.innerHTML = ""
+
+            printCards(filtro, contenedor)
+        }
+    )

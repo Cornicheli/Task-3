@@ -2,7 +2,6 @@
     margin: 0%;
     padding: 0%;
     box-sizing: border-box;
-    background-color: #adb5bd;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 .titulo{
@@ -33,6 +32,7 @@ section{
     align-items: center;
     flex-direction: column;
     width: 75%;
+    
 }
 .lista{
     display: flex;
@@ -70,7 +70,7 @@ main{
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    min-height: 63vh;
+    min-height: 64vh;
     gap: 1rem;
 }
 form.input-buscador{
@@ -116,7 +116,7 @@ p{
     border-radius: 1rem;
     font-weight: 500;
     border: solid 2px black;
-    background-color:#dee2e6;
+    background-color:#adb5bd87;
 }
 .texto{
     display: flex;
@@ -172,7 +172,7 @@ p{
 footer{
     display: flex;
     gap: 1.5rem;
-    min-height: 6vh;
+    min-height: 7vh;
     justify-content: space-around;
     align-items: center;
     border-top: solid 2px black;
