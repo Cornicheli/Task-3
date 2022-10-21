@@ -11,21 +11,16 @@
     font-size: 3rem;
     min-height: 16vh;
     width: 100%;
-    border-bottom: solid 2px black;
-    border-top: solid 2px black;
     background-color: #6c757d;
 }
 .container-fluid{
     display: flex;
-    
 }
 h1{
-    color: rgb(0, 0, 0);
-    text-shadow: 2px 2px 10px white;
-    font-size: 3.5rem;
+    color: white;
+    font-size: 3.7rem;
     text-decoration: underline;
     text-align: center;
-    background-color: #6c757d;
 }
 section{
     display: flex;
@@ -173,6 +168,7 @@ footer{
     display: flex;
     gap: 1.5rem;
     min-height: 7vh;
+    flex-wrap: wrap;
     justify-content: space-around;
     align-items: center;
     border-top: solid 2px black;
@@ -210,9 +206,6 @@ footer{
         flex-wrap: wrap;
         width: 100%;
     }
-    footer{
-        flex-direction: column;
-    }
     .textos-contac{
         width: 10rem;
     }
@@ -222,9 +215,14 @@ footer{
 }
 @media screen and (max-width: 768px){
     .filtros{
-        min-height: 40rem;
+        min-height: 15rem;
         margin: 0%;
-
+    }
+}
+@media screen and (max-width: 450px){
+    .filtros{
+        min-height: 35rem;
+        margin: 0%;
     }
 }
 
