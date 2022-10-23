@@ -9,37 +9,30 @@
     justify-content: center;
     align-items: center;
     font-size: 3rem;
-    min-height: 16vh;
+    min-height: 15vh;
     width: 100%;
-    border-bottom: solid 2px black;
-    border-top: solid 2px black;
     background-color: #6c757d;
 }
 .container-fluid{
     display: flex;
-    
 }
 h1{
-    color: rgb(0, 0, 0);
-    text-shadow: 2px 2px 10px white;
-    font-size: 3.5rem;
+    color: white;
+    font-size: 3.7rem;
     text-decoration: underline;
     text-align: center;
-    background-color: #6c757d;
 }
 section{
     display: flex;
     align-items: center;
     flex-direction: column;
-    width: 75%;
-    
+    width: 25%;
 }
 .lista{
     display: flex;
     min-height: 63vh;
     flex-direction: column;
 }
-
 th, td{
     width: 35%;
     border: solid 2px black;
@@ -63,7 +56,7 @@ fieldset{
 label{
     font-weight: 800;
     font-size: 1.2rem;
-    padding: .2rem;
+    padding: .5rem;
 }
 main{
     display: flex;
@@ -71,7 +64,6 @@ main{
     justify-content: center;
     align-items: center;
     min-height: 64vh;
-    gap: 1rem;
 }
 form.input-buscador{
     display: flex;
@@ -83,7 +75,7 @@ form.input-buscador{
     justify-content: space-evenly;
     align-items: center;
     width: 100%;
-    min-height: 10rem;
+    min-height: 9rem;
     gap: 1rem;
     height: 5rem;
 }
@@ -109,7 +101,7 @@ p{
     display: flex;
     flex-direction: column;
     justify-content: center;
-    height: 28rem;
+    height: 29rem;
     width: 15rem;
     margin: .5rem;
     text-align: center;
@@ -139,7 +131,6 @@ p{
     font-weight: 100;
     color: white;
 }
-
 .form-check{
     display: flex;
     flex-wrap: wrap;
@@ -162,17 +153,17 @@ p{
 .img-card{
     border-radius: 2rem;
     margin: 0.5rem;
+    width: 80%;
     height: 35%;
-    width: 90%;
     background-size: cover;
     background-position: center;
     border: solid 2px black;
 }
-
 footer{
     display: flex;
     gap: 1.5rem;
     min-height: 7vh;
+    flex-wrap: wrap;
     justify-content: space-around;
     align-items: center;
     border-top: solid 2px black;
@@ -210,9 +201,6 @@ footer{
         flex-wrap: wrap;
         width: 100%;
     }
-    footer{
-        flex-direction: column;
-    }
     .textos-contac{
         width: 10rem;
     }
@@ -222,36 +210,13 @@ footer{
 }
 @media screen and (max-width: 768px){
     .filtros{
-        min-height: 40rem;
+        min-height: 15rem;
         margin: 0%;
-
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+@media screen and (max-width: 450px){
+    .filtros{
+        min-height: 35rem;
+        margin: 0%;
+    }
+}
