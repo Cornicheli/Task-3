@@ -9,7 +9,7 @@
     justify-content: center;
     align-items: center;
     font-size: 3rem;
-    min-height: 16vh;
+    min-height: 15vh;
     width: 100%;
     background-color: #6c757d;
 }
@@ -26,15 +26,13 @@ section{
     display: flex;
     align-items: center;
     flex-direction: column;
-    width: 75%;
-    
+    width: 25%;
 }
 .lista{
     display: flex;
     min-height: 63vh;
     flex-direction: column;
 }
-
 th, td{
     width: 35%;
     border: solid 2px black;
@@ -58,7 +56,7 @@ fieldset{
 label{
     font-weight: 800;
     font-size: 1.2rem;
-    padding: .2rem;
+    padding: .5rem;
 }
 main{
     display: flex;
@@ -66,7 +64,6 @@ main{
     justify-content: center;
     align-items: center;
     min-height: 64vh;
-    gap: 1rem;
 }
 form.input-buscador{
     display: flex;
@@ -78,7 +75,7 @@ form.input-buscador{
     justify-content: space-evenly;
     align-items: center;
     width: 100%;
-    min-height: 10rem;
+    min-height: 9rem;
     gap: 1rem;
     height: 5rem;
 }
@@ -104,7 +101,7 @@ p{
     display: flex;
     flex-direction: column;
     justify-content: center;
-    height: 28rem;
+    height: 29rem;
     width: 15rem;
     margin: .5rem;
     text-align: center;
@@ -134,7 +131,6 @@ p{
     font-weight: 100;
     color: white;
 }
-
 .form-check{
     display: flex;
     flex-wrap: wrap;
@@ -157,13 +153,12 @@ p{
 .img-card{
     border-radius: 2rem;
     margin: 0.5rem;
+    width: 80%;
     height: 35%;
-    width: 90%;
     background-size: cover;
     background-position: center;
     border: solid 2px black;
 }
-
 footer{
     display: flex;
     gap: 1.5rem;
@@ -225,31 +220,3 @@ footer{
         margin: 0%;
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

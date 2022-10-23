@@ -25,44 +25,61 @@ printCards(past, contenedor)
 
 // <---------------------------- checkbox ---------------------------->
 
-let categorias = document.getElementById("boxes");
 
-let checkbox = new Set(events.map((evento) => evento.category) )
 
-checkbox = [...checkbox]
+    let categorias = document.getElementById('boxes');
 
-checkbox.forEach((nombreCategoria) => {
+    let checkbox = new Set(events.map((evento) => evento.category) )
+
+    checkbox = [...checkbox]
+
+    checkbox.forEach((nombreCategoria) => {
     categorias.innerHTML += 
-        `
+    `
         <div class='form-check form-switch'>
             <input class='form-check-input' id='${nombreCategoria}' type='checkbox' role='switch' id='flexSwitchCheckDefault'>
-            <label class='form-check-label' for="flexSwitchCheckDefault">${nombreCategoria}</label>
+            <label class='form-check-label' for='flexSwitchCheckDefault'>${nombreCategoria}</label>
         </div>
-        `
-    }
-)
-    let listCheckUno = []
+    `
+    })
+
+    // <-------------- checkbox logistica -------------->
+
+    let listCheck = [] //coincidencia
+
+    // evento que activa/desactiva los elementos en este caso los checkbox
 
     categorias.addEventListener(`change`, e=>{
-    console.log(buscador.value)
 
-    if(e.target.checked){
-        listCheckUno = listCheckUno.concat(past.filter(evento=> evento.category.toLowerCase().includes(e.target.id.toLowerCase() ) ) )
+    // cuando el evento se checkbox active ejecutara sus intruncciones
+
+    if(e.target.checked){ //indica que cuando el evento este (tildado) ejecuta la instruccion dentro de las llaves.
+        listCheck = listCheck.concat(events.filter(evento=> evento.category.toLowerCase().includes(e.target.id.toLowerCase() ) ) )
+    // id nombrecategoria
+    // filter itera
+        console.log(listCheck)
 
         contenedor.innerHTML = ''
 
-        printCards(listCheckUno,contenedor )}
+        printCards(listCheck,contenedor )}
 
     else if(!e.target.checked){
-        listCheckUno = listCheckUno.filter(evento => !evento.category.toLowerCase().includes( e.target.id.toLowerCase() ) )
+        console.log('else if')
+        listCheck = listCheck.filter(evento => !evento.category.toLowerCase().includes( e.target.id.toLowerCase() ) )
 
         contenedor.innerHTML = ''
 
-        printCards(listCheckUno, contenedor)}
+        printCards(listCheck, contenedor)}
 
-    if (listCheckUno.length === 0){
-        printCards(past,contenedor) } } )
+    if (listCheck.length === 0){
+        printCards(events,contenedor)}
+        }
+    )
 
+
+    let checkBoxs = document.querySelectorAll('.checkboxId')
+
+    console.log(checkBoxs)
 
     // <---------------------------- input busqueda ---------------------------->
     let buscador = document.getElementById('buscadores');
