@@ -18,7 +18,7 @@
 }
 h1{
     color: white;
-    font-size: 3.7rem;
+    font-size: 3.5rem;
     text-decoration: underline;
     text-align: center;
 }
@@ -93,7 +93,7 @@ p{
     border-radius: 1rem;
     padding: 0.5rem;
     border: solid 2px white;
-    margin: .3rem;
+    margin: .4rem;
     color: #191919;
     background-color: #adb5bd;
 }
@@ -106,7 +106,6 @@ p{
     margin: .5rem;
     text-align: center;
     border-radius: 1rem;
-    font-weight: 500;
     border: solid 2px black;
     background-color:#adb5bd87;
 }
@@ -151,10 +150,10 @@ p{
     width: 100%;
 }
 .img-card{
-    border-radius: 2rem;
+    border-radius: 1rem;
     margin: 0.5rem;
     width: 80%;
-    height: 35%;
+    height: 32%;
     background-size: cover;
     background-position: center;
     border: solid 2px black;

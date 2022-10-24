@@ -1,99 +1,78 @@
-let contenedor = document.getElementById("tarjetero");
 
-// .date > currentDate. es para que imprima los eventos del pasado
-let past = events.filter((event) => event.date < currentDate);
+let $contenedor = document.getElementById(`tarjetero`);
+let $categorias = document.getElementById(`boxes`);
+let $inputSearch = document.getElementById(`buscadores`);
 
-    function printCards(array, contenedor) {
-    array.forEach((e) => {
-        contenedor.innerHTML += 
+let fechas
+let past
+let evento ;
+fetch('https://amazing-events.herokuapp.com/api/events')
+    .then( data => data.json() )
+    .then( data =>{ 
+        console.log(data)
+        evento = data.events
+        fechas = data.currentDate
+        past = evento.filter((evento) => evento.date < fechas);
+        createBox(past, $categorias)
+        printCards(past,$contenedor )
+        $inputSearch.addEventListener('keyup', filter)
+        $categorias.addEventListener('change',filter)
+        console.log(evento)
+        console.log(past)
+    } )
+    .catch( err => console.log(err))
+
+function createBox(event, contenedor){
+    let fn = event => event.category
+    let box = new Set ( event.filter( fn ).map( fn ) )
+    box.forEach( box =>{
+        contenedor.innerHTML +=
         `
-        <section class='card'>
-            <img class='img-card' src='${e.image}' alt='foto'>
-            <h2>${e.name}</h2>
-            <p>${e.description}</p>
-            <div class="texto">
-                <p>$ ${e.price}</p>
-            <a class='ancor' href="../html/details.html?events=${e._id}">Read More</a>
-            </div>
-        </section>
-        `
-    })
-    }
-
-printCards(past, contenedor)
-
-
-// <---------------------------- checkbox ---------------------------->
-
-
-
-    let categorias = document.getElementById('boxes');
-
-    let checkbox = new Set(events.map((evento) => evento.category) )
-
-    checkbox = [...checkbox]
-
-    checkbox.forEach((nombreCategoria) => {
-    categorias.innerHTML += 
-    `
         <div class='form-check form-switch'>
-            <input class='form-check-input' id='${nombreCategoria}' type='checkbox' role='switch' id='flexSwitchCheckDefault'>
-            <label class='form-check-label' for='flexSwitchCheckDefault'>${nombreCategoria}</label>
+            <input class='form-check-input' value='${box}' id=${box} type='checkbox' rol exSwitchCheckDefault'>
+            <label class='form-check-label' for='flexSwitchCheckDefault'>${box}</label>
         </div>
-    `
+        `
     })
 
-    // <-------------- checkbox logistica -------------->
+}
 
-    let listCheck = [] //coincidencia
+function createCard (event, contenedor){
 
-    // evento que activa/desactiva los elementos en este caso los checkbox
+    let section = document.createElement('section')
+    contenedor.innerHTML += 
+        `
+    <section class='card'>
+        <img class='img-card' src='${event.image}' alt='foto'>
+        <h2>${event.name}</h2>
+        <p>${event.description}</p>
+        <div class='texto'>
+            <p>$ ${event.price}</p>
+            <a class='ancor' href="./html/details.html?events=${event._id}">Read More</a>
+        </div>
+    </section>
+        `
+    return section
 
-    categorias.addEventListener(`change`, e=>{
+}
 
-    // cuando el evento se checkbox active ejecutara sus intruncciones
+function printCards(event, contenedor){ 
 
-    if(e.target.checked){ //indica que cuando el evento este (tildado) ejecuta la instruccion dentro de las llaves.
-        listCheck = listCheck.concat(events.filter(evento=> evento.category.toLowerCase().includes(e.target.id.toLowerCase() ) ) )
-    // id nombrecategoria
-    // filter itera
-        console.log(listCheck)
+    contenedor.innerHTML = " "
+    let fragment = document.createDocumentFragment() 
+    event.forEach(event => fragment.appendChild(createCard (event, contenedor) ) )
+    contenedor.appendChild(fragment) //fragment reflow
 
-        contenedor.innerHTML = ''
+}
 
-        printCards(listCheck,contenedor )}
+function filter(){
+    let checked = [...document.querySelectorAll('input[type ="checkbox"]:checked')].map(ele => ele.value)
 
-    else if(!e.target.checked){
-        console.log('else if')
-        listCheck = listCheck.filter(evento => !evento.category.toLowerCase().includes( e.target.id.toLowerCase() ) )
+    let filtersName = evento.filter (event => checked.includes (event.category) || checked.length === 0)
+    console.log(filtersName);
 
-        contenedor.innerHTML = ''
+    let filterSearch = filtersName.filter(event => event.name.toLowerCase().includes($inputSearch.value.toLowerCase()))
+    console.log(filterSearch);
+    printCards(filterSearch, $contenedor)
 
-        printCards(listCheck, contenedor)}
-
-    if (listCheck.length === 0){
-        printCards(events,contenedor)}
-        }
-    )
-
-
-    let checkBoxs = document.querySelectorAll('.checkboxId')
-
-    console.log(checkBoxs)
-
-    // <---------------------------- input busqueda ---------------------------->
-    let buscador = document.getElementById('buscadores');
-
-    buscador.addEventListener('keyup', e =>{
-
-    let inputUser = e.target.value
-
-    console.log(buscador.value) //filter cambiarlo por el function
-
-    let filtro = events.filter(objetoEvento => objetoEvento.name.toLowerCase().includes(inputUser.toLowerCase() ) )
-
-            contenedor.innerHTML = ""
-
-            printCards(filtro, contenedor)
-        }
-    )
+}
