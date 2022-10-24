@@ -5,7 +5,7 @@ let $categorias = document.getElementById(`boxes`);
 let inputSearch = document.getElementById(`buscadores`);
 
 let evento ; 
-fetch('https://amazing-events.herokuapp.com/api/events')
+fetch('https://mind-hub.up.railway.app/amazing')
     .then( data => data.json() )
     .then( data =>{ 
         evento = data.events
@@ -42,7 +42,7 @@ function createCard (event, contenedor){
         <p>${event.description}</p>
         <div class='texto'>
             <p>$ ${event.price}</p>
-            <a class='ancor' href="./html/details.html?events=${event._id}">Read More</a>
+            <a class='ancor' id='readMore' href="./html/details.html?events=${event._id}">Read More</a>
         </div>
     </section>
         `
