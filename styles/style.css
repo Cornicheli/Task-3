@@ -9,7 +9,7 @@
     justify-content: center;
     align-items: center;
     font-size: 3rem;
-    min-height: 15vh;
+    min-height: 10vh;
     width: 100%;
     background-color: #6c757d;
 }
@@ -75,7 +75,7 @@ form.input-buscador{
     justify-content: space-evenly;
     align-items: center;
     width: 100%;
-    min-height: 9rem;
+    min-height: 6rem;
     gap: 1rem;
     height: 5rem;
 }
@@ -101,7 +101,7 @@ p{
     display: flex;
     flex-direction: column;
     justify-content: center;
-    height: 29rem;
+    height: 32rem;
     width: 15rem;
     margin: .5rem;
     text-align: center;
@@ -152,8 +152,8 @@ p{
 .img-card{
     border-radius: 1rem;
     margin: 0.5rem;
-    width: 80%;
-    height: 32%;
+    width: 90%;
+    height: 35%;
     background-size: cover;
     background-position: center;
     border: solid 2px black;

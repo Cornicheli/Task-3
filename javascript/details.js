@@ -1,19 +1,12 @@
+let $datails = document.getElementById('tarjeteroUnico')
 
-let fullEvents = events
-
-let idEvent = location.search.slice(8)
-
-let fullEventsFilter = fullEvents.filter(idEvents => idEvent == idEvents._id)
-
-fullEventsFilter = fullEventsFilter[0]
-
-printFirstCard(fullEventsFilter)
-
-
+let evento ;
 fetch('https://amazing-events.herokuapp.com/api/events')
     .then( data => data.json() )
     .then( data =>{
+    evento = data.events
     } )
+    .catch( err => console.log(err))
 
 function printFirstCard(evento) {
         contenedorUnico.innerHTML = 
@@ -31,4 +24,12 @@ function printFirstCard(evento) {
             <p>u$d ${evento.price}</p>
         </div>
         `
+    }
+
+    function logicPrintCard(evento){
+        let fullEvents = evento
+        let idEvent = location.search.slice(8)
+        let fullEventsFilter = fullEvents.filter(idEvents => idEvent == idEvents._id)
+        fullEventsFilter = fullEventsFilter[0]
+        printFirstCard(fullEventsFilter)
     }

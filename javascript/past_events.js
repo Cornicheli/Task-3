@@ -6,12 +6,12 @@ let $inputSearch = document.getElementById(`buscadores`);
 let fechas
 let past
 let evento ;
-fetch('https://amazing-events.herokuapp.com/api/events')
+fetch('https://mind-hub.up.railway.app/amazing')
     .then( data => data.json() )
     .then( data =>{ 
         console.log(data)
         evento = data.events
-        fechas = data.currentDate
+        fechas = data.date
         past = evento.filter((evento) => evento.date < fechas);
         createBox(past, $categorias)
         printCards(past,$contenedor )
@@ -68,7 +68,7 @@ function printCards(event, contenedor){
 function filter(){
     let checked = [...document.querySelectorAll('input[type ="checkbox"]:checked')].map(ele => ele.value)
 
-    let filtersName = evento.filter (event => checked.includes (event.category) || checked.length === 0)
+    let filtersName = past.filter (event => checked.includes (event.category) || checked.length === 0)
     console.log(filtersName);
 
     let filterSearch = filtersName.filter(event => event.name.toLowerCase().includes($inputSearch.value.toLowerCase()))
