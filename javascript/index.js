@@ -42,7 +42,7 @@ function createCard (event, contenedor){
         <p>${event.description}</p>
         <div class='texto'>
             <p>$ ${event.price}</p>
-            <a class='ancor' id='readMore' href="./html/details.html?events=${event._id}">Read More</a>
+            <a class='ancor' id='readMore' href="./html/details.html?id=${event.id}">Read More</a>
         </div>
     </section>
         `
