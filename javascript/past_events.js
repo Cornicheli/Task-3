@@ -41,17 +41,17 @@ function createCard (event, contenedor){
 
     let section = document.createElement('section')
     contenedor.innerHTML += 
-        `
+    `
     <section class='card'>
         <img class='img-card' src='${event.image}' alt='foto'>
         <h2>${event.name}</h2>
         <p>${event.description}</p>
         <div class='texto'>
             <p>$ ${event.price}</p>
-            <a class='ancor' href="./html/details.html?events=${event._id}">Read More</a>
+            <a class='ancor' id='readMore' href="../html/details.html?id=${event.id}">Read More</a>
         </div>
     </section>
-        `
+    `
     return section
 
 }
