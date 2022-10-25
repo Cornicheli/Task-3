@@ -1,122 +1,87 @@
-let $tablets = document.getElementById('tablet')
-
-let upcoming
-let past
-let fechas
-let evento 
-fetch('https://amazing-events.herokuapp.com/api/events')
-    .then( data => data.json() )
-    .then( data =>{
-        evento = data.events
-        tabletOne($tablets)
-        tabletTwo($tablets)
-        tabletThree($tablets)
-        fechas = data.currentDate
-        upcoming = evento.filter(everyTables => everyTables.date > fechas)
-        console.log(upcoming)
-        past = evento.filter(everyTables => everyTables.date < fechas)
-        console.log(past)
-    } )
-    .catch( err => console.log(err))
+let $rowOne = document.getElementById("tabletOne")
+let $rowTwo = document.getElementById("tableTwo")
+let $rowThree = document.getElementById("tableThree")
 
 
-function tabletOne(contenedor){
-contenedor.innerHTML +=
-    `
-    <thead class="table-dark">
-        <tr>
-        <th colspan="3">Event statistics</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-        <td class="semibold">
-            Events with the highest percentage of attendance
-        </td>
-        <td class="semibold">
-            Events with the lowest percentage of attendance
-        </td>
-        <td class="semibold">Events with larger capacity</td>
-        </tr>
-        <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-        </tr>
-    </tbody>
-    `
-}
-
-function logicTabletOne(){
-    past.map(object =>{
-        
-    object.porcentajeAsistencia = 100 * (object.assistance / object.capacity);
-    
-        // <----- sort ----->
-    let asistenciaOrdenada = [...past].sort((event1, event2) => event1.porcentajeAsistencia - event2.porcentajeAsistencia )
-    let capacidadOrdenada = [...past].sort((event1, event2) => event1.capacity - event2.capacity)
+let eventosFuturos;
+let eventosPasados;
+fetch("https://mh-amazing.herokuapp.com/amazing")
+    .then((data) => data.json())
+    .then((data) => {
+        let eventos = data.events;
+        let fechaActual = data.date;
+        eventosFuturos = eventos.filter((objeto) => objeto.date > fechaActual);
+        eventosPasados = eventos.filter((objeto) => objeto.date < fechaActual);
+        logicaTablaUno();
+        stats(eventosFuturos, 'estimate', $rowTwo)
+        stats(eventosPasados, 'assistance', $rowThree)
     })
+    .catch((error) => console.log(error));
 
-        // <----- porcentajes ----->
-    let menorAsistencia = asistenciaOrdenada[0]
-    let mayorAsistencia = asistenciaOrdenada[asistenciaOrdenada.length -1]
-    let mayorCapacidad = capacidadOrdenada[capacidadOrdenada.length -1]
 
-    tabletOne($tablets, menorAsistencia, mayorAsistencia, mayorCapacidad)
+function tableOne(contenedor, obj1, obj2, obj3) {
+    contenedor.innerHTML += `
+    <tr>
+        <td>${obj1.name}</td> 
+        <td>${obj2.name}</td>
+        <td>${obj3.name}</td>
+    </tr>
+    `;
 }
 
-function tabletTwo(contenedor){
-contenedor.innerHTML +=
-    `
-    <thead class="table-dark">
-        <tr>
-            <th colspan="3">Upcoming events statistics by category</th>
+function tablaTwo(array, contenedor) {
+    array.forEach(element => {
+        contenedor.innerHTML +=
+        `
+        <tr >
+            <td >${element.category}</td>
+            <td >${element.ganancia}</td>
+            <td >${element.promedio}%</td>     
         </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td class="semibold">Categories</td>
-            <td class="semibold">Revenues</td>
-            <td class="semibold">Percentage of attendance</td>
-        </tr>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-    </tbody>
-    `
+        `
+    })
 }
 
-function tabletThree(contenedor){
-contenedor.innerHTML +=
-    `
-    <thead class="table-dark">
-        <tr>
-            <th colspan="3">Past events by category</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td class="semibold">Categories</td>
-            <td class="semibold">Revenues</td>
-            <td class="semibold">Percentage of attendance</td>
-        </tr>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-    </tbody>
-    `
+function logicaTablaUno() {
+    eventosPasados.map((objeto) => {
+        objeto.porcentajeAsistencia = 100 * (objeto.assistance / objeto.capacity);
+    });
+    let asistenciaOrdenada = [...eventosPasados].sort((e1, e2) => e1.porcentajeAsistencia - e2.porcentajeAsistencia);
+    let capacidadOrdenada = [...eventosPasados].sort((e1, e2) => e1.capacity - e2.capacity);
+
+    let menorAsistencia = asistenciaOrdenada[0];
+    let mayorAsistencia = asistenciaOrdenada[asistenciaOrdenada.length - 1];
+    let mayorCapacidad = capacidadOrdenada[capacidadOrdenada.length - 1];
+    tableOne($rowOne, menorAsistencia, mayorAsistencia, mayorCapacidad);
+}
+
+function stats(fechaEvento, propiedad, contenedor) {
+    fechaEvento.map(evento => {
+        evento.ganancia = evento[propiedad] * evento.price
+    })
+    let categories = Array.from(new Set(fechaEvento.map(evento => evento.category)))
+    let stats = categories.map(cat => {
+        let filter = fechaEvento.filter(evento => evento.category === cat)
+        return accumulator(filter, propiedad)
+    })
+    tablaTwo(stats, contenedor)
+}
+
+function accumulator(array, propiedad) {
+    let starterValue = {
+        category: "",
+        ganancia: 0,
+        capacity: 0,
+        [propiedad]: 0
+    }
+    let stats = array.reduce((e1, e2) => {
+        return {
+        category: e2.category,
+        ganancia: e1.ganancia + e2.ganancia,
+        capacity: e1.capacity + e2.capacity,
+        [propiedad]: e1[propiedad] + e2[propiedad]
+        }
+    }, starterValue)
+    stats.promedio = (100 * stats[propiedad] / stats.capacity).toFixed(0)
+    return stats
 }
