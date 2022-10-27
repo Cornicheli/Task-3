@@ -29,19 +29,6 @@ function tableOne(contenedor, obj1, obj2, obj3) {
     `;
 }
 
-function tablaTwo(array, contenedor) {
-    array.forEach(element => {
-        contenedor.innerHTML +=
-        `
-        <tr >
-            <td >${element.category}</td>
-            <td >${element.ganancia}</td>
-            <td >${element.promedio}%</td>     
-        </tr>
-        `
-    })
-}
-
 function logicaTablaUno() {
     eventosPasados.map((objeto) => {
         objeto.porcentajeAsistencia = 100 * (objeto.assistance / objeto.capacity);
@@ -53,6 +40,20 @@ function logicaTablaUno() {
     let mayorAsistencia = asistenciaOrdenada[asistenciaOrdenada.length - 1];
     let mayorCapacidad = capacidadOrdenada[capacidadOrdenada.length - 1];
     tableOne($rowOne, menorAsistencia, mayorAsistencia, mayorCapacidad);
+}
+
+
+function tablaTwo(array, contenedor) {
+    array.forEach(element => {
+        contenedor.innerHTML +=
+        `
+        <tr >
+            <td >${element.category}</td>
+            <td >${element.ganancia}</td>
+            <td >${element.promedio}%</td>     
+        </tr>
+        `
+    })
 }
 
 function stats(fechaEvento, propiedad, contenedor) {

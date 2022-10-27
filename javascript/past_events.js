@@ -7,7 +7,7 @@ let fechas
 let past
 let evento ;
 fetch('https://mh-amazing.herokuapp.com/amazing')
-    .then( data => data.json() )
+    .then( data => data.json() ) //transforma un string a un objeto
     .then( data =>{ 
         console.log(data)
         evento = data.events
@@ -60,7 +60,7 @@ function printCards(event, contenedor){
 
     contenedor.innerHTML = " "
     let fragment = document.createDocumentFragment() 
-    event.forEach(event => fragment.appendChild(createCard (event, contenedor) ) )
+    event.forEach(event => fragment.appendChild(createCard (event, contenedor) ) ) // al contenedor padre le inserta lo que tiene entre parentecis
     contenedor.appendChild(fragment) //fragment reflow
 
 }
