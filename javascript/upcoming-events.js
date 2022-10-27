@@ -8,8 +8,7 @@ let upComing
 let evento ;
 fetch('https://mh-amazing.herokuapp.com/amazing')
     .then( data => data.json() )
-    .then( data =>{ 
-        console.log(data)
+    .then( data =>{ 1
         evento = data.events
         fechas = data.date
         upComing = evento.filter((evento) => evento.date > fechas);
@@ -17,8 +16,6 @@ fetch('https://mh-amazing.herokuapp.com/amazing')
         printCards(upComing,$contenedor )
         $inputSearch.addEventListener('keyup', filter)
         $categorias.addEventListener('change',filter)
-        console.log(evento)
-        console.log(upComing)
     } )
     .catch( err => console.log(err))
 

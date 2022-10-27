@@ -1,20 +1,19 @@
-//API: https://mind-hub.up.railway.app/amazing
 
 let $contenedor = document.getElementById(`tarjetero`);
 let $categorias = document.getElementById(`boxes`);
-let inputSearch = document.getElementById(`buscadores`);
+let $inputSearch = document.getElementById(`buscadores`);
 
-let evento ; 
-fetch('https://mh-amazing.herokuapp.com/amazing')
-    .then( data => data.json() )
+let evento ; // variable indefinida
+fetch('https://mh-amazing.herokuapp.com/amazing') // solicita al servidor y carga la informacion
+    .then( data => data.json() ) // tranforma texto a objeto
     .then( data =>{ 
         evento = data.events
         createBox(evento, $categorias)
         printCards(evento,$contenedor )
-        inputSearch.addEventListener('keyup', filter)
+        $inputSearch.addEventListener('keyup', filter)
         $categorias.addEventListener('change',filter)
     } )
-    .catch( err => console.log(err))
+    .catch( err => console.log(err)) //error por consola
 
 function createBox(event, contenedor){
     let fn = event => event.category
@@ -52,8 +51,8 @@ function createCard (event, contenedor){
 
 function printCards(event, contenedor){ 
 
-    contenedor.innerHTML = " "
-    let fragment = document.createDocumentFragment() 
+    contenedor.innerHTML = " " //limpia contenedor
+    let fragment = document.createDocumentFragment()  //nodo dom, evita cargar constantemente y simplemente mostrarlas
     event.forEach(event => fragment.appendChild(createCard (event, contenedor) ) )
     contenedor.appendChild(fragment) //fragment reflow
 
@@ -63,10 +62,8 @@ function filter(){
     let checked = [...document.querySelectorAll('input[type ="checkbox"]:checked')].map(ele => ele.value)
 
     let filtersName = evento.filter (event => checked.includes (event.category) || checked.length === 0)
-    console.log(filtersName);
 
-    let filterSearch = filtersName.filter(event => event.name.toLowerCase().includes(inputSearch.value.toLowerCase()))
-    console.log(filterSearch);
+    let filterSearch = filtersName.filter(event => event.name.toLowerCase().includes($inputSearch.value.toLowerCase() ) )
     printCards(filterSearch, $contenedor)
 
 }
